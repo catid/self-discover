@@ -40,7 +40,7 @@ def select_reasoning_modules(task_description, reasoning_modules):
     """
     Step 1: SELECT relevant reasoning modules for the task.
     """
-    prompt = f"Given the task: {task_description}, which of the following reasoning modules are relevant?\n\n" + "\n".join(reasoning_modules)
+    prompt = f"Given the task: {task_description}, which of the following reasoning modules are relevant? Do not elaborate on why.\n\n" + "\n".join(reasoning_modules)
     selected_modules = query_openai(prompt)
     return selected_modules
 
@@ -115,7 +115,7 @@ if __name__ == "__main__":
     ]
 
 
-    task_example = "A farmer wants to buy some chickens and goats. He goes to the market with $100, knowing that a chicken costs $5 and a goat costs $20. If he wants to buy at least one of each animal and must spend all his money, how many chickens and goats can he buy?"
+    task_example = "Lisa has 10 apples. She gives 3 apples to her friend and then buys 5 more apples from the store. How many apples does Lisa have now?"
 
 
 

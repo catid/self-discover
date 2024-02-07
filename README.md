@@ -30,87 +30,100 @@ I ran this using a self-hosted Miqu 70B model ( https://huggingface.co/LoneStrik
 This is querying for the default task:
 
 ```
-A farmer wants to buy some chickens and goats. He goes to the market with $100, knowing that a chicken costs $5 and a goat costs $20. If he wants to buy at least one of each animal and must spend all his money, how many chickens and goats can he buy?
+Lisa has 10 apples. She gives 3 apples to her friend and then buys 5 more apples from the store. How many apples does Lisa have now?
+
+(The answer is 12.)
 ```
 
 ```bash
 (sd) ➜  self-discover git:(main) ✗ python self_discover.py
 
 Stage 1 SELECT: Selected Modules:
- To solve a simple algebra problem, the following reasoning modules are relevant:
+ 9. How can I break down this problem into smaller, more manageable parts?
 
-4. How can I simplify the problem so that it is easier to solve?
-9. How can I break down this problem into smaller, more manageable parts?
-16. What is the core issue or problem that needs to be addressed?
-36. What is the best way to modify this current best solution, given what you know about these kinds of problem specification?
-39. Let’s make a step by step plan and implement it with good notation and explanation.
+The problem can be broken down into two parts: first, calculating how many apples Lisa has after giving some away, and second, calculating how many apples she has after buying more. This approach simplifies the problem and makes it easier to solve.
 
-Explanation:
+Additionally, 10. Critical Thinking: This style involves analyzing the problem from different perspectives, questioning assumptions, and evaluating the evidence or information available. It focuses on logical reasoning, evidence-based decision-making, and identifying potential biases or flaws in thinking.
 
-1. Simplify the problem: In algebra, it is often helpful to simplify the problem by combining like terms, eliminating unnecessary variables, or rearranging the equation to isolate the variable you are trying to solve for.
-2. Break down the problem: Algebra problems can often be broken down into smaller, more manageable parts. For example, if you are solving for x in an equation with multiple variables, you might first solve for one variable in terms of the others and then substitute that expression back into the original equation to solve for x.
-3. Identify the core issue: In order to solve an algebra problem, it is important to understand what the problem is asking for. This might involve identifying the variable you are trying to solve for, understanding the relationships between different variables, and recognizing any constraints or conditions that apply to the problem.
-4. Modify the current best solution: If you have a solution to the problem, but it is not quite right, it can be helpful to think about how you might modify that solution to better fit the problem. This might involve adjusting constants, rearranging terms, or making other small changes to the equation.
-5. Make a step-by-step plan: To solve an algebra problem, it is often helpful to make a step-by-step plan. This might involve listing out the steps you need to take to solve the problem, using good notation and explanation to make sure each step is clear and easy to follow. This can help you stay organized and focused as you work through the problem, and can also make it easier to identify any errors or mistakes you might have made along the way.
+Critical thinking is always relevant in problem-solving as it helps to ensure that the solution is based on sound reasoning and evidence. In this case, it can help to confirm that the problem is being interpreted correctly and that the solution is logical and accurate.
+
+Therefore, both 9 and 10 are relevant reasoning modules for this problem.
 
 Stage 1 ADAPT: Adapted Modules:
- 1. Simplify the problem: In this problem, we can simplify the problem by recognizing that the farmer wants to buy at least one of each animal, so we know that he will buy at least 1 chicken and 1 goat. This means that he will spend at least $25 on the first chicken and goat. We can then subtract this amount from the total amount of money he has to find out how much money he has left to spend on additional chickens and goats.
-2. Break down the problem: We can break down this problem into two smaller parts: first, finding out how many additional chickens the farmer can buy with the money he has left after buying the first chicken and goat, and second, finding out how many goats he can buy with the remaining money.
-3. Identify the core issue: The core issue in this problem is to determine how many chickens and goats the farmer can buy with the money he has, while still spending all of his money and buying at least one of each animal.
-4. Modify the current best solution: If we have a solution to this problem, but it is not quite right, we might need to adjust the number of chickens or goats we think the farmer can buy. For example, if we initially think he can buy 10 chickens and 2 goats, but then realize that this would only cost $90, we would need to adjust our solution to account for the remaining $10.
-5. Make a step-by-step plan: To solve this problem, we can make a step-by-step plan as follows:
+ 1. Breaking down the problem:
+The problem can be broken down into two smaller tasks:
 
-a. Subtract the cost of the first chicken and goat from the total amount of money the farmer has.
-b. Divide the remaining money by the cost of a chicken to find out how many additional chickens the farmer can buy.
-c. Multiply the number of additional chickens by the cost of a chicken to find out how much money the farmer will spend on chickens.
-d. Subtract the cost of the chickens from the remaining money to find out how much money is left for goats.
-e. Divide the remaining money by the cost of a goat to find out how many goats the farmer can buy.
-f. Add the number of goats to the initial goat the farmer bought to find out the total number of goats he can buy.
-g. Add the number of chickens and goats together to find out the total number of animals the farmer can buy.
+a) Calculate how many apples Lisa has after giving 3 to her friend.
+b) Calculate how many apples Lisa has after buying 5 more apples from the store.
+
+By breaking down the problem into these smaller tasks, it becomes easier to solve.
+
+2. Critical thinking:
+Apply critical thinking to ensure that the problem is being interpreted correctly and that the solution is logical and accurate. This involves:
+
+a) Confirming that the problem is understood correctly (Lisa starts with 10 apples, gives away 3, and buys 5 more).
+b) Ensuring that the order of operations is followed correctly (subtracting the apples given away before adding the apples bought).
+c) Double-checking the calculations to ensure accuracy.
+
+By applying critical thinking, you can be confident that the solution is based on sound reasoning and evidence.
 
 Stage 1 IMPLEMENT: Reasoning Structure:
- To solve the problem of a farmer who wants to buy chickens and goats with a budget of $120, where each chicken costs $10 and each goat costs $20, and he wants to buy at least one of each animal, we can use the following reasoning structure:
+ 1. Breaking down the problem:
 
-1. Simplify the problem:
-The farmer wants to buy at least one of each animal, so we know that he will spend at least $25 on the first chicken and goat. We can subtract this amount from the total amount of money he has to find out how much money he has left to spend on additional chickens and goats.
-2. Break down the problem:
-We can break down this problem into two smaller parts: first, finding out how many additional chickens the farmer can buy with the money he has left after buying the first chicken and goat, and second, finding out how many goats he can buy with the remaining money.
-3. Identify the core issue:
-The core issue in this problem is to determine how many chickens and goats the farmer can buy with the money he has, while still spending all of his money and buying at least one of each animal.
-4. Modify the current best solution:
-If we have a solution to this problem, but it is not quite right, we might need to adjust the number of chickens or goats we think the farmer can buy. For example, if we initially think he can buy 10 chickens and 2 goats, but then realize that this would only cost $90, we would need to adjust our solution to account for the remaining $10.
-5. Make a step-by-step plan:
-To solve this problem, we can make a step-by-step plan as follows:
+a) Calculate how many apples Lisa has after giving 3 to her friend:
+- Lisa starts with 10 apples
+- She gives away 3 apples
+- Subtract the number of apples given away from the initial number of apples
 
-a. Subtract the cost of the first chicken and goat from the total amount of money the farmer has.
-b. Divide the remaining money by the cost of a chicken to find out how many additional chickens the farmer can buy.
-c. Multiply the number of additional chickens by the cost of a chicken to find out how much money the farmer will spend on chickens.
-d. Subtract the cost of the chickens from the remaining money to find out how much money is left for goats.
-e. Divide the remaining money by the cost of a goat to find out how many goats the farmer can buy.
-f. Add the number of goats to the initial goat the farmer bought to find out the total number of goats he can buy.
-g. Add the number of chickens and goats together to find out the total number of animals the farmer can buy.
+b) Calculate how many apples Lisa has after buying 5 more apples from the store:
+- After giving away 3 apples, Lisa has a certain number of apples left (from task a)
+- She then buys 5 more apples
+- Add the number of apples bought to the remaining number of apples
 
-By following this reasoning structure, we can solve the problem and determine how many chickens and goats the farmer can buy with his budget of $120.
+2. Critical thinking:
+
+a) Confirm that the problem is understood correctly:
+- Lisa starts with 10 apples
+- She gives 3 apples away
+- She buys 5 more apples
+
+b) Ensure that the order of operations is followed correctly:
+- First, subtract the apples given away
+- Then, add the apples bought
+
+c) Double-check the calculations:
+- Verify that the correct number of apples was subtracted
+- Verify that the correct number of apples was added
+
+By following this reasoning structure, you can solve the problem by breaking it down into smaller tasks, applying critical thinking, and double-checking your calculations. The final answer should be accurate and based on sound reasoning.
 
 Stage 2: Final Result:
- To solve a simple algebra problem, we can use the following reasoning structure:
+ 1. Breaking down the problem:
 
-1. Simplify the problem:
-Look for any terms that can be simplified or combined to make the equation easier to work with. For example, if the equation is 3x + 2 - x = 8, we can simplify it to 2x + 2 = 8.
-2. Break down the problem:
-Identify the different parts of the equation and what each part represents. For example, in the equation 2x + 2 = 8, the 2x represents the variable term, the +2 represents the constant term, and the = 8 represents the solution or goal.
-3. Identify the core issue:
-The core issue in a simple algebra problem is to find the value of the variable that makes the equation true. In the equation 2x + 2 = 8, the core issue is to find the value of x that makes the equation true.
-4. Modify the current best solution:
-If we have a solution to the problem, but it is not quite right, we might need to adjust our solution to make the equation true. For example, if we initially think that x = 3, but then realize that this would make the equation 2(3) + 2 = 8 or 8 = 8, we would need to adjust our solution to find the correct value of x.
-5. Make a step-by-step plan:
-To solve a simple algebra problem, we can make a step-by-step plan as follows:
+a) Calculate how many apples Lisa has after giving 3 to her friend:
+- Lisa starts with 10 apples
+- She gives away 3 apples
+- Subtract the number of apples given away from the initial number of apples: 10 - 3 = 7 apples
 
-a. Isolate the variable term:
-Move all the terms that do not contain the variable to one side of the equation. In the equation 2x + 2 = 8, we can subtract 2 from both sides to get 2x = 6.
+b) Calculate how many apples Lisa has after buying 5 more apples from the store:
+- After giving away 3 apples, Lisa has 7 apples left (from task a)
+- She then buys 5 more apples
+- Add the number of apples bought to the remaining number of apples: 7 + 5 = 12 apples
 
-b. Solve for the variable:
-Divide both sides of the equation by the coefficient of the variable to find the value of the variable. In the equation 2x = 6, we can divide both sides by 2 to get x = 3.
+2. Critical thinking:
 
-By following this reasoning structure, we can solve the simple algebra problem and find the value of the variable that makes the equation true. In this case, the final answer is x = 3.
+a) Confirm that the problem is understood correctly:
+- Lisa starts with 10 apples
+- She gives 3 apples away
+- She buys 5 more apples
+
+b) Ensure that the order of operations is followed correctly:
+- First, subtract the apples given away (10 - 3)
+- Then, add the apples bought (7 + 5)
+
+c) Double-check the calculations:
+- Verify that the correct number of apples was subtracted (10 - 3 = 7)
+- Verify that the correct number of apples was added (7 + 5 = 12)
+
+Final answer: Lisa has 12 apples now.
 ```
