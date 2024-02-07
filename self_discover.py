@@ -2,11 +2,14 @@ import openai
 import os
 import time
 
-# OpenAI
 from openai import OpenAI
+
+# Edit this part for your setup
+#client = OpenAI(api_key="yourkey")
 client = OpenAI(api_key="14d78630027e15de243c8b3b489a91fa", base_url="http://devnuc.lan:5000/v1")
 
-def query_llm(messages, max_tokens=512, temperature=0.1):
+
+def query_llm(messages, max_tokens=2048, temperature=0.1):
     # Retry forever
     while True:
         try:
@@ -22,6 +25,7 @@ def query_llm(messages, max_tokens=512, temperature=0.1):
 
             return content
         except Exception as e:
+            print("Failure querying the AI. Retrying...")
             time.sleep(1)
 
 def query_openai(prompt):
@@ -29,6 +33,8 @@ def query_openai(prompt):
         { "role": "user", "content": prompt }
     ]
     return query_llm(messages)
+
+# STAGE 1
 
 def select_reasoning_modules(task_description, reasoning_modules):
     """
@@ -38,11 +44,11 @@ def select_reasoning_modules(task_description, reasoning_modules):
     selected_modules = query_openai(prompt)
     return selected_modules
 
-def adapt_reasoning_modules(selected_modules, task_examples):
+def adapt_reasoning_modules(selected_modules, task_example):
     """
     Step 2: ADAPT the selected reasoning modules to be more specific to the task.
     """
-    prompt = f"Adapt the following reasoning modules to be specific to our task:\n{selected_modules}\n\nTask Examples:\n{task_examples}"
+    prompt = f"Without working out the full solution, adapt the following reasoning modules to be specific to our task:\n{selected_modules}\n\nOur task:\n{task_example}"
     adapted_modules = query_openai(prompt)
     return adapted_modules
 
@@ -50,17 +56,26 @@ def implement_reasoning_structure(adapted_modules, task_description):
     """
     Step 3: IMPLEMENT the adapted reasoning modules into an actionable reasoning structure.
     """
-    prompt = f"Create an actionable reasoning structure for the task using these adapted reasoning modules:\n{adapted_modules}\n\nTask Description:\n{task_description}"
+    prompt = f"Without working out the full solution, create an actionable reasoning structure for the task using these adapted reasoning modules:\n{adapted_modules}\n\nTask Description:\n{task_description}"
     reasoning_structure = query_openai(prompt)
     return reasoning_structure
 
+# STAGE 2
+
+def execute_reasoning_structure(reasoning_structure, task_instance):
+    """
+    Execute the reasoning structure to solve a specific task instance.
+    """
+    prompt = f"Using the following reasoning structure: {reasoning_structure}\n\nSolve this task, providing your final answer: {task_instance}"
+    solution = query_openai(prompt)
+    return solution
+
 # Example usage
 if __name__ == "__main__":
-    task_description = "Explain how to solve a simple algebra problem."
     reasoning_modules = [
         "1. How could I devise an experiment to help solve that problem?",
         "2. Make a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.",
-        "3. How could I measure progress on this problem?",
+        #"3. How could I measure progress on this problem?",
         "4. How can I simplify the problem so that it is easier to solve?",
         "5. What are the key assumptions underlying this problem?",
         "6. What are the potential risks and drawbacks of each solution?",
@@ -69,10 +84,10 @@ if __name__ == "__main__":
         "9. How can I break down this problem into smaller, more manageable parts?",
         "10. Critical Thinking: This style involves analyzing the problem from different perspectives, questioning assumptions, and evaluating the evidence or information available. It focuses on logical reasoning, evidence-based decision-making, and identifying potential biases or flaws in thinking.",
         "11. Try creative thinking, generate innovative and out-of-the-box ideas to solve the problem. Explore unconventional solutions, thinking beyond traditional boundaries, and encouraging imagination and originality.",
-        "12. Seek input and collaboration from others to solve the problem. Emphasize teamwork, open communication, and leveraging the diverse perspectives and expertise of a group to come up with effective solutions.",
+        #"12. Seek input and collaboration from others to solve the problem. Emphasize teamwork, open communication, and leveraging the diverse perspectives and expertise of a group to come up with effective solutions.",
         "13. Use systems thinking: Consider the problem as part of a larger system and understanding the interconnectedness of various elements. Focuses on identifying the underlying causes, feedback loops, and interdependencies that influence the problem, and developing holistic solutions that address the system as a whole.",
         "14. Use Risk Analysis: Evaluate potential risks, uncertainties, and tradeoffs associated with different solutions or approaches to a problem. Emphasize assessing the potential consequences and likelihood of success or failure, and making informed decisions based on a balanced analysis of risks and benefits.",
-        "15. Use Reflective Thinking: Step back from the problem, take the time for introspection and self-reflection. Examine personal biases, assumptions, and mental models that may influence problem-solving, and being open to learning from past experiences to improve future approaches.",
+        #"15. Use Reflective Thinking: Step back from the problem, take the time for introspection and self-reflection. Examine personal biases, assumptions, and mental models that may influence problem-solving, and being open to learning from past experiences to improve future approaches.",
         "16. What is the core issue or problem that needs to be addressed?",
         "17. What are the underlying causes or factors contributing to the problem?",
         "18. Are there any potential solutions or strategies that have been tried before? If yes, what were the outcomes and lessons learned?",
@@ -95,19 +110,23 @@ if __name__ == "__main__":
         "35. Let’s imagine the current best solution is totally wrong, what other ways are there to think about the problem specification?"
         "36. What is the best way to modify this current best solution, given what you know about these kinds of problem specification?"
         "37. Ignoring the current best solution, create an entirely new solution to the problem."
-        "38. Let’s think step by step."
-        "39. Let’s make a step by step plan and implement it with good notion and explanation."
-        # Added this one suggested by GPT-4:
-        "40. Use Integrative Thinking: Identify conflicting approaches to the problem, analyze their benefits and limitations, and synthesize a new model that integrates the best features of each while overcoming their individual weaknesses."
+        #"38. Let’s think step by step."
+        "39. Let’s make a step by step plan and implement it with good notation and explanation."
     ]
-    task_examples = "Solve for x: 2x + 3 = 7"
 
-    selected_modules = select_reasoning_modules(task_description, reasoning_modules)
-    print("Selected Modules:\n", selected_modules)
-    
-    adapted_modules = adapt_reasoning_modules(selected_modules, task_examples)
-    print("\nAdapted Modules:\n", adapted_modules)
-    
-    reasoning_structure = implement_reasoning_structure(adapted_modules, task_description)
-    print("\nReasoning Structure:\n", reasoning_structure)
 
+    task_example = "A farmer wants to buy some chickens and goats. He goes to the market with $100, knowing that a chicken costs $5 and a goat costs $20. If he wants to buy at least one of each animal and must spend all his money, how many chickens and goats can he buy?"
+
+
+
+    selected_modules = select_reasoning_modules(task_example, reasoning_modules)
+    print("Stage 1 SELECT: Selected Modules:\n", selected_modules)
+    
+    adapted_modules = adapt_reasoning_modules(selected_modules, task_example)
+    print("\nStage 1 ADAPT: Adapted Modules:\n", adapted_modules)
+    
+    reasoning_structure = implement_reasoning_structure(adapted_modules, task_example)
+    print("\nStage 1 IMPLEMENT: Reasoning Structure:\n", reasoning_structure)
+
+    result = execute_reasoning_structure(reasoning_structure, task_example)
+    print("\nStage 2: Final Result:\n", result)
