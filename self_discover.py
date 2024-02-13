@@ -6,7 +6,7 @@ from openai import OpenAI
 
 # Edit this part for your setup
 #client = OpenAI(api_key="yourkey")
-client = OpenAI(api_key="14d78630027e15de243c8b3b489a91fa", base_url="http://devnuc.lan:5000/v1")
+client = OpenAI(api_key="local-generated-key", base_url="http://devnuc.lan:5000/v1")
 
 
 def query_llm(messages, max_tokens=2048, temperature=0.1):
