@@ -2,19 +2,18 @@ import openai
 import os
 import time
 
+from dotenv import load_dotenv
+load_dotenv()
+
 from openai import OpenAI
 
-# Edit this part for your setup
-#client = OpenAI(api_key="yourkey")
-client = OpenAI(api_key="local-generated-key", base_url="http://devnuc.lan:5000/v1")
-
-
+client = OpenAI()
 def query_llm(messages, max_tokens=2048, temperature=0.1):
     # Retry forever
     while True:
         try:
             response = client.chat.completions.create(
-                model="the best model",
+                model=os.environ["MODEL"],
                 messages=messages,
                 temperature=temperature,
                 max_tokens=max_tokens,
@@ -115,9 +114,9 @@ if __name__ == "__main__":
     ]
 
 
-    task_example = "Lisa has 10 apples. She gives 3 apples to her friend and then buys 5 more apples from the store. How many apples does Lisa have now?"
-
-
+    # task_example = "Lisa has 10 apples. She gives 3 apples to her friend and then buys 5 more apples from the store. How many apples does Lisa have now?"
+    # task_example = "리사는 사과 10개를 가지고 있습니다. 그녀는 친구에게 사과 3개를 주고, 가게에서 사과 5개를 더 삽니다. 리사는 지금 사과를 몇 개나 갖고 있나요?"
+    task_example = "스테인리스강으로 만든 젓가락의 HS코드는 무엇인가요?"
 
     selected_modules = select_reasoning_modules(task_example, reasoning_modules)
     print("Stage 1 SELECT: Selected Modules:\n", selected_modules)
