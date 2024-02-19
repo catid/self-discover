@@ -2,6 +2,16 @@ import openai
 import os
 import time
 
+''' [ Setup .env ]
+
+1. Create empty file called ".env"
+2. Open file with text editor
+3. Add the following lines:
+OPENAI_API_KEY=your api key
+MODEL=gpt-4-0125-preview (or any other model of your choice)
+4. Remember to have ".env" added to your .gitignore file
+
+'''
 from dotenv import load_dotenv
 load_dotenv()
 
