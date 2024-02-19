@@ -2,19 +2,28 @@ import openai
 import os
 import time
 
+''' [ Setup .env ]
+
+1. Create empty file called ".env"
+2. Open file with text editor
+3. Add the following lines:
+OPENAI_API_KEY=your api key
+MODEL=gpt-4-0125-preview (or any other model of your choice)
+4. Remember to have ".env" added to your .gitignore file
+
+'''
+from dotenv import load_dotenv
+load_dotenv()
+
 from openai import OpenAI
 
-# Edit this part for your setup
-#client = OpenAI(api_key="yourkey")
-client = OpenAI(api_key="local-generated-key", base_url="http://devnuc.lan:5000/v1")
-
-
+client = OpenAI()
 def query_llm(messages, max_tokens=2048, temperature=0.1):
     # Retry forever
     while True:
         try:
             response = client.chat.completions.create(
-                model="the best model",
+                model=os.environ["MODEL"],
                 messages=messages,
                 temperature=temperature,
                 max_tokens=max_tokens,
@@ -114,10 +123,7 @@ if __name__ == "__main__":
         "39. Let’s make a step by step plan and implement it with good notation and explanation."
     ]
 
-
     task_example = "Lisa has 10 apples. She gives 3 apples to her friend and then buys 5 more apples from the store. How many apples does Lisa have now?"
-
-
 
     selected_modules = select_reasoning_modules(task_example, reasoning_modules)
     print("Stage 1 SELECT: Selected Modules:\n", selected_modules)
